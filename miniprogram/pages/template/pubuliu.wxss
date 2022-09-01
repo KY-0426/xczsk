@@ -1,0 +1,71 @@
+page{
+  width: 100%;
+  margin: 0;
+  background: #F2F2F2;
+}
+.content{
+  display: flex;
+  flex-direction: row;
+  margin: 10rpx;
+  overflow: hidden;
+}
+
+.left{
+  width: 360rpx;
+}
+
+.right{
+  width: 360rpx;
+  margin-left: 10rpx;
+}
+.li{
+  background: #ffffff;
+  border-radius: 10rpx;
+  margin-bottom: 10rpx;
+}
+.pic{
+  border-radius: 10rpx 10rpx 0rpx 0rpx;
+  width: 360rpx;
+}
+
+.bottom{
+  display: flex;
+  justify-content: space-between;
+  padding: 0 20rpx;
+  align-items: center;
+}
+.title-wrap{
+  padding: 5rpx 20rpx 0rpx 20rpx;
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #333;
+}
+.toux{
+  width: 60rpx;
+  height: 60rpx;
+  border-radius: 30rpx;
+}
+.name{
+  font-size: 25rpx;
+  color: #333;
+  font-weight: 300;
+  margin-left: 20rpx;
+}
+.toux-name{
+  display: flex;
+  align-items: center;
+  margin: 20rpx 0rpx;
+}
+.love-num{
+  display: flex;
+  align-items: center;
+  color: #000;
+}
+.love-num image{
+  width: 35rpx;
+  height: 35rpx;
+}
+.num{
+  font-size: 25rpx;
+  margin-left: 5rpx;
+}

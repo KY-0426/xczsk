@@ -1,0 +1,20 @@
+<template name="pubuliu">
+	<view class="item">
+			<view class="li" data-id="{{_id}}" catchtap="paperTap">
+				<image class="pic" src="{{img}}" 	lazy-load="{{true}}" mode="widthFix"></image>
+					<view class="title-wrap">
+						<navigator url="url" class="title">{{title}}</navigator>
+					</view>
+					<view class="bottom">
+						<view class="toux-name">
+							<image class="toux" src="{{author_img}}"></image>
+							<text class="name">{{author_name}}</text>
+						</view>
+						<view class="love-num">
+							<view class="love"><image src="cloud://cloud1-6g8xdvmffa0e841f.636c-cloud1-6g8xdvmffa0e841f-1309493752/icon/37c016114ecc90ef57d77db8457e448.png" ></image></view>
+							<text class="num ">{{like_num}}</text>
+						</view>
+					</view>
+			</view>
+	</view>
+</template>

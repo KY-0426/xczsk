@@ -1,0 +1,77 @@
+<!--pages/course/course.wxml-->
+<!-- 搜索 -->
+<cu-custom bgColor="bg-white" isBack="{{false}}" left>
+  <view slot="backText">
+  <navigator url="../course/myCourse/myCourse" >
+   <image src="https://636c-cloud1-6g8xdvmffa0e841f-1309493752.tcb.qcloud.la/icon/8db9052f74344ecfa8b42391c30dfcf.png?sign=cba03cf1f8cf82bb079ad6499cfe3733&t=1654337636" style="width: 50rpx; height: 50rpx; margin:0 20rpx;"></image>
+    <view class="text-sm text-cyan text-bold ">我的课程</view>
+  </navigator>
+   
+  </view>
+  <view slot="backText">
+    <view class=" cu-bar  search fixed bg-white" style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px; " bindtap="onSearchBoxTap">
+      <view class="search-form round" style="height: 80rpx; border-radius: 30rpx; background-color: #e4efef;">
+        <text class="cuIcon-search "></text>
+        <input type="text" disabled="disabled" maxlength="0" placeholder="搜索课程"></input>
+      </view>
+    </view>
+  </view>
+</cu-custom>
+<!-- 课程菜单 -->
+<view>
+  <scroll-view class="scroll-view_H padding-top padding-bottom" scroll-x="true" style="width: 100%;height:290rpx; ">
+    <block wx:for="{{courseList}}" wx:key="id" wx:for-index="idx" wx:if="{{item.show}}">
+      <view class="cu-avatar radius margin-lg xl " style="background:url('{{item.menu_icon}}'); background-repeat:round" catchtap="onIncourseTap" data-index="{{item._id}}">
+        <view class="text-black text-lg" style="position: absolute; top: 150rpx;"> <text>{{item.menu_name}}</text></view>
+      </view>
+    </block>
+  </scroll-view>
+</view>
+<!-- 优选课程 -->
+<view class=" text-xl flex justify-between padding-top-xl padding-lr solids-top" style="height: 100rpx; ">
+  <view class="text-bold light">优选课程</view>
+  <navigator class="text-gray text-lg" url="../course/moreCourse/moreCourse">
+    查看更多 >
+  </navigator>
+</view>
+<view class="cu-card article no-card padding-top" wx:for="{{courseList1}}" wx:key="id">
+  <view class="cu-item shadow" catchtap="oncoursepaperTap" data-id="{{item._id}}">
+    <view class="content">
+      <image src="{{item.course_icon}}" mode="aspectFill" style="height: 230rpx; width: 200rpx;border-radius: 13rpx;"></image>
+      <view class="desc padding-left-sm ">
+        <view class="text-xl text-bold">{{item.course_name}}</view>
+        <view class="padding-top-sm">
+          <block wx:for="{{item.course_teacher}}" wx:key="id" wx:for-item="teacher">
+            <text class="light round">{{teacher.teacher_name}} </text>
+          </block>
+        </view>
+        <view class="text-content padding-top-sm">{{item.course_content}}</view>
+      </view>
+    </view>
+  </view>
+</view>
+
+<!-- 精选课程 -->
+<view class=" text-xl flex justify-between  padding-lr solids-top padding-top-xl" style="height: 100rpx; ">
+  <view class="text-bold light">精选课程</view>
+  <navigator class="text-gray text-lg" url="../course/moreCourse/moreCourse">
+    查看更多 >
+  </navigator>
+</view>
+<view class="cu-card article no-card solids-bottom" wx:key="id" wx:for="{{courseList2}}">
+  <view class="cu-item shadow padding-lr" catchtap="oncoursepaperTap" data-id="{{item._id}}">
+    <view class="text-content text-lg padding-tb  text-bold">
+      <view class="cu-tag bg-cyan light   round">{{item.menu_name}}</view>
+      {{item.course_name}}
+    </view>
+    <view class="text-gray">开课时间：{{item._createTime}} 开课 {{item.course_content_num}}课时</view>
+    <view class="padding-right-sm padding-tb flex " style="height: 150rpx;">
+      <view wx:for="{{item.course_teacher}}" wx:key="id" wx:for-item="teacher">
+        <image class="margin-right" src="{{teacher.teacher_img}}" mode="aspectFill" style="height: 60rpx; width: 60rpx;border-radius: 100%;"></image>
+        <view class="text-gray padding-right text-center text-sm"> <text>{{teacher.teacher_name}}</text> </view>
+      </view>
+      <view class="text-gray text-sm" style="position: absolute; bottom: 55rpx; right: 30rpx;" wx:if="{{item.order_num >0}}">
+        已有{{item.order_num?item.order_num:"0"}}人报名</view>
+    </view>
+  </view>
+</view>

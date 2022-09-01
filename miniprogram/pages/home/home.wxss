@@ -1,0 +1,73 @@
+/* pages/home/home.wxss */
+.page {
+  height: 100Vh;
+  width: 100vw;
+}
+page{
+  padding-top: 100rpx;
+  background-color: #f4fafb;
+}
+.scroll-view_H{
+  white-space: nowrap;
+}
+.scroll-view-item{
+  height: 300rpx;
+}
+.scroll-view-item_H{
+  display: inline-block;
+  width: 100%;
+  height: 300rpx;
+}
+
+.page.show {
+  overflow: hidden;
+}
+
+.switch-sex::after {
+  content: "\e716";
+}
+
+.switch-sex::before {
+  content: "\e7a9";
+}
+
+.switch-music::after {
+  content: "\e66a";
+}
+
+.switch-music::before {
+  content: "\e6db";
+}
+.grids {
+  position: relative;
+  overflow: hidden;
+  padding:10px;
+  text-align:center;
+}
+
+.grids-cell {
+  position: relative;
+  float: left;
+  width: 30%;
+  margin:5px;
+ }
+
+.grids-cell-icon {
+  display: block;
+  width: 100%;
+  height: 100%;
+  text-align:center;
+  margin-top: 5px;
+  padding: 25rpx;
+}
+
+.grids-cell-icon image {
+  width: 80px;
+  height: 80px;
+}
+
+.grids-cell-label {
+  display: block;
+  font-size:14px;
+  text-align:center;
+}

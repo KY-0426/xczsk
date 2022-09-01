@@ -1,0 +1,5 @@
+/* colorui/components/title-action-bar/title-action-bar.wxss */
+.box {  
+  margin: 20rpx 0; 
+}
+

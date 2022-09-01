@@ -1,0 +1,72 @@
+<import src="../template/template.wxml"></import>
+
+<!-- 普法 -->
+<block wx:if="{{TabCur == 0}}">
+  <cu-custom bgColor="bg-white" isBack="{{false}}" left>
+    <view slot="backText"><text class="text-xl text-cyan text-bold">视频专栏</text></view>
+  </cu-custom>
+  <scroll-view scroll-x class="nav text-center bg-white ">
+    <block wx:for="{{tab}}" wx:key="id">
+      <view class="cu-item {{index==TabCur?'text-blue cur':''}}" bindtap="tabSelect" data-id="{{index}}">
+        {{item.name}}
+      </view>
+    </block>
+  </scroll-view>
+  <view class="grid col-2" style="width: 100%; display: flex; flex-wrap: wrap;justify-content: space-between; padding:0px 10rpx 0px ;margin-top: 15rpx;">
+    <block wx:for="{{video}}" wx:key="id">
+      <template is="videoTmp" data="{{...item}}"></template>
+    </block>
+  </view>
+</block>
+<!-- 生活圈 -->
+<block wx:if="{{TabCur == 1}}">
+  <block wx:if="{{zhuti}}">
+    <cu-custom bgColor="bg-white" isBack="{{false}}" left>
+      <view slot="backText">
+        <scroll-view scroll-x class="nav text-center bg-white ">
+          <block wx:for="{{tab}}" wx:key="id">
+            <view class="cu-item {{index==TabCur?'text-cyan cur':''}}" bindtap="tabSelect" data-id="{{index}}">
+              {{item.name}}
+            </view>
+          </block>
+        </scroll-view>
+      </view>
+    </cu-custom>
+
+    <view style="position: absolute; top: 0rpx; width: 100%; height:100%;">
+      <mp-video-swiper class="video-swiper" video-list="{{video1}}" bindplay="onPlay" bindpause="onPause" bindtimeupdate="onTimeUpdate" bindended="onEnded" binderror="onError" bindwaiting="onWaiting" bindprogress="onProgress" bindloadedmetadata="onLoadedMetaData"></mp-video-swiper>
+    </view>
+  </block>
+  <block wx:else="{{zhuti}}">
+        <cu-custom bgColor="bg-white" isBack="{{false}}" left>
+        <view slot="backText"><text class="text-xl text-cyan text-bold">视频专栏</text></view>
+      </cu-custom>
+      <scroll-view scroll-x class="nav text-center bg-white ">
+        <block wx:for="{{tab}}" wx:key="id">
+          <view class="cu-item {{index==TabCur?'text-blue cur':''}}" bindtap="tabSelect" data-id="{{index}}">
+            {{item.name}}
+          </view>
+        </block>
+      </scroll-view>
+      <block wx:for="{{video1}}" wx:key="id">
+        <template is="ATTmp" data="{{...item}}"></template>
+      </block>
+  </block>
+</block>
+<!-- 农技 -->
+<block wx:if="{{TabCur == 2}}">
+  <cu-custom bgColor="bg-white" isBack="{{false}}" left>
+    <view slot="backText"><text class="text-xl text-cyan text-bold">视频专栏</text></view>
+  </cu-custom>
+
+  <scroll-view scroll-x class="nav text-center bg-white ">
+    <block wx:for="{{tab}}" wx:key="id">
+      <view class="cu-item {{index==TabCur?'text-blue cur':''}}" bindtap="tabSelect" data-id="{{index}}">
+        {{item.name}}
+      </view>
+    </block>
+  </scroll-view>
+  <block wx:for="{{video2}}" wx:key="id">
+    <template is="ATTmp" data="{{...item}}"></template>
+  </block>
+</block>

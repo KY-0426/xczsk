@@ -1,0 +1,33 @@
+<!-- 返回 -->
+<cu-custom bgColor="bg-white" isBack="{{true}}"></cu-custom>
+<!-- 提示框 -->
+<view class="cu-load bg-green {{!isLoad?'loading':'over'}}" wx:if="{{loadSearch}}"></view> 
+<view class="cu-load bg-red" wx:if="{{errInput}}">请输入</view>
+<view class="cu-load bg-blue" wx:if="{{errSearch}}">抱歉，没有找到</view>
+<!-- 搜索框 -->
+<view class="cu-bar bg-white search fixed " style="top:{{CustomBar}}px">
+  <view class="search-form round">
+    <text class="cuIcon-search "></text>
+    <input type="text" placeholder="搜索课程"  value="{{searchValue}}" bindinput="searchValueInput"></input>
+  </view>
+  <view class="action" >
+    <button class="cu-btn bg-cyan shadow-blur round" style="width: 120rpx" bindtap="ToSearch">搜索</button>
+  </view>
+</view>
+<!-- 搜索结果 -->
+<view class="cu-card article no-card padding-top" wx:for="{{result}}" wx:key="id">
+  <view class="cu-item shadow" catchtap="oncoursepaperTap" data-id="{{item._id}}">
+    <view class="content">
+      <image src="{{item.course_icon}}" mode="aspectFill" style="height: 230rpx; width: 200rpx;border-radius: 13rpx;"></image>
+      <view class="desc padding-left-sm ">
+        <view class="text-xl text-bold">{{item.course_name}}</view>
+        <view class="padding-top-sm">
+          <block wx:for="{{item.course_teacher}}" wx:key="id" wx:for-item="teacher">
+            <text class="light round">{{teacher.teacher_name}} </text>
+          </block>
+        </view>
+        <view class="text-content padding-top-sm">{{item.course_content}}</view>
+      </view>
+    </view>
+  </view>
+</view>

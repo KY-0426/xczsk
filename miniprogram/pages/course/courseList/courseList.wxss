@@ -1,0 +1,4 @@
+/* pages/course/courseList/courseList.wxss */
+page{
+  background-color: white;
+}

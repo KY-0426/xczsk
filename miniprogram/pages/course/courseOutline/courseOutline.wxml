@@ -1,0 +1,77 @@
+<!--pages/course/courseOutline/courseOutline.wxml-->
+<!-- 课程大纲 -->
+<view class="topnav">
+  <cu-custom bgColor="bg-white" isCustom="{{true}}">
+  </cu-custom>
+  <!-- <video src="{{oneList.url}}" poster="{{oneList.img}}"	title="{{oneList.title}}" style="height: 430rpx;" object-fit="fill"  autoplay="{{false}}"></video> -->
+  <txv-video vid="{{contentOne.course_vid}}" autoplay="{{autoplay}}"></txv-video>
+  <view>
+  </view>
+</view>
+<view class="flex p-xs margin-bottom-sm mb-sm" style="height: 110rpx;">
+  <view class="flex-twice  radius">
+    <scroll-view scroll-x class="bg-white nav text-left">
+      <view class="cu-item {{index==TabCur?'text-blue cur':''}}" wx:for="{{tabcurlist}}" wx:key="id" bindtap="tabSelect" data-id="{{index}}">
+        {{item.name}}
+      </view>
+    </scroll-view>
+  </view>
+  <!-- <view class="flex-sub bg-cyan flex  align-center " style="border-radius: 40rpx 0 0 40rpx; height: 90rpx;">
+    <image class="margin-left-sm margin-top-xs" src="https://636c-cloud1-6g8xdvmffa0e841f-1309493752.tcb.qcloud.la/touxiang/1653613309515.png?sign=fe0bda875f57c4539b754074a8712adb&t=1653989569" mode="aspectFill" style="height: 80rpx; width: 80rpx;border-radius: 100%;"></image>
+    <text class="text-white padding-left text-center text-sm"> <text>X老师</text> </text>
+  </view> -->
+</view>
+<block wx:if="{{TabCur==0}}">
+  <scroll-view scroll-y="{{true}}" style="width: 100%; height: 900rpx;background-color: white;">
+    <block wx:if="{{courseList[0]}}">
+  <view class="cu-card article no-card padding-top" wx:for="{{courseList}}" wx:key="id">
+    <view class="cu-item shadow" catchtap="oncoursepaperTap" data-id="{{item._id}}">
+      <view class="content">
+        <image src="{{item.course_icon}}" mode="aspectFill" style="height: 230rpx; width: 200rpx;border-radius: 13rpx;"></image>
+        <view class="desc padding-left-sm ">
+          <view class="text-xl text-bold">{{item.course_name}}</view>
+          <view class="padding-top-sm">
+            <block wx:for="{{item.course_teacher}}" wx:key="id" wx:for-item="teacher">
+              <text class="light round">{{teacher.teacher_name}} </text>
+            </block>
+          </view>
+          <view class="text-content padding-top-sm">{{item.course_content}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</block>
+
+<view wx:else="{{courseList[0]}}" class="flex solid-bottom padding justify-around">
+  <view class="cu-list grid  bg-grey ">
+    <view class="cu-item ">
+      <text class="cuIcon-questionfill lg text-gray"></text>
+      <text>小乡正在加班中...</text>
+    </view>
+  </view>
+</view>
+  </scroll-view>
+</block>
+<block wx:if="{{TabCur==1}}">
+  <scroll-view scroll-y="{{true}}" style="width: 100%; height: 900rpx;">
+
+    <block wx:if="{{CourseOK}}">
+      <view class="text-lg flex justify-between  padding-lr  padding-top" style="height: 100rpx; " wx:for="{{contentList}}" wx:key="id" data-id="{{item._id}}" catchtap="onOpenOutlineTap">
+        <view class="light {{item._id==contentOne._id?'text-red':''}} ">{{index+1}}
+          <text class="padding-left ">{{item.course_title}}</text>
+        </view>
+        <view class="text-cyan">观看</view>
+      </view>
+    </block>
+    <block wx:else >
+      <view class="text-lg flex justify-between  padding-lr  padding-top" style="height: 100rpx; " wx:for="{{contentList}}" wx:key="id"  catchtap="onOpenOutlineNOTap">
+        <view class="light {{item._id==contentOne._id?'text-red':''}} ">{{index+1}}
+          <text class="padding-left ">{{item.course_title}}</text>
+        </view>
+        <view class="text-cyan" wx:if="{{index<1}}">试看</view>
+      </view>
+    </block>
+
+
+  </scroll-view>
+</block>

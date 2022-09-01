@@ -1,0 +1,18 @@
+<!--pages/my/denglu/denglu.wxml-->
+<cu-custom bgColor="bg-white" isBack="{{true}}">
+  <view slot="backText">登录</view>
+</cu-custom>
+
+<form catchsubmit="formSubmit" catchreset="formReset">
+  <view style="height: 300rpx;height: 100%; margin: auto; align-items: center;" class="text-center justify-between">
+    <button open-type="chooseAvatar" bind:chooseavatar="onChooseAvatar" style="width: 500rpx ; height: 300rpx;">
+      <image style="width: 100% ; height: 100%" src="{{avatarUrl}}" mode="aspectFit"></image>
+    </button>
+    <input type="nickname" placeholder="请输入昵称"  name="input"/>
+    <view class="padding-top">
+      <button  type="primary" formType="submit">确定</button>
+      <button formType="reset">重置</button>
+    </view>
+    <text class="text-orange">小提示：游客登录 退出登录将无法再次登录</text>
+  </view>
+</form>

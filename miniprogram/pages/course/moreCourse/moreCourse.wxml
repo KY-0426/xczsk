@@ -1,0 +1,47 @@
+<!--pages/course/moreCourse/moreCourse.wxml-->
+<view class='cu-custom'>
+  <view class="cu-bar fixed bg-shadeTop" style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;">
+    <navigator class='action' open-type="switchTab"  hover-class="none" url="../course">
+      <text class='cuIcon-back'></text> 返回
+    </navigator>
+    <view class='content' style='top:{{StatusBar}}px;'>全部课程</view>
+  </view>
+</view>
+<swiper class="screen-swiper round-dot" indicator-dots="true" circular="true" autoplay="true" interval="5000" duration="500">
+  <swiper-item wx:for="{{imgList}}" wx:key="id"catchtap="oncoursepaperTap" data-id="{{item.id}}" >
+    <image src="{{item.src}}" mode='aspectFill'></image>
+  </swiper-item>
+</swiper>
+<view class="VerticalBox">
+  <scroll-view class="VerticalNav nav" scroll-y scroll-with-animation scroll-top="{{VerticalNavTop}}" style="height:calc(100vh - 375rpx)">
+    <view class="cu-item {{index==TabCur?'text-cyan cur':''}} bg-white" wx:for="{{list}}" wx:if="{{item.course[0]}}" wx:key="id" bindtap='tabSelect' data-id="{{index}}">
+     {{item.name}}
+    </view>
+  </scroll-view>
+  <scroll-view class="VerticalMain" scroll-y scroll-with-animation style="height:calc(100vh - 375rpx)" scroll-into-view="main-{{MainCur}}" bindscroll="VerticalMain" >
+    <view  class="padding-top padding-lr bg-white" wx:for="{{list}}" wx:key="id" id="main-{{index}}" wx:if="{{item.course[0]}}">
+      <view class='cu-bar solid-bottom bg-white'>
+        <view class='action'>
+          <text class='cuIcon-title text-cyan'></text> {{item.name}} </view>
+      </view>
+      <view class="cu-list menu-avatar" wx:for="{{item.course}}" wx:key="id" wx:for-item="course"catchtap="oncoursepaperTap" data-id="{{course._id}}">
+        <view class="cu-item ">
+          <view class="cu-avatar radius lg" style="background-image:url({{course.course_icon}});"></view>
+          <view class="content">
+            <view class="text-black">
+              <text class="text-cut">{{course.course_name}}</text>
+            </view>
+            <view class="text-gray text-sm flex">
+              <text class="text-cut">{{course.course_content}}</text>
+            </view>
+          </view>
+          <view class="action text-grey ">
+            <view class="text-xs"> </view>
+            <view class="text-sm">{{course.peoplenum}}</view>
+          </view>
+        </view>
+      </view>
+
+    </view>
+  </scroll-view>
+</view>

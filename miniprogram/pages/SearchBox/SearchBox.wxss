@@ -1,0 +1,4 @@
+/* pages/SearchBox/SearchBox.wxss */
+page{
+  padding-top: 100rpx;
+}

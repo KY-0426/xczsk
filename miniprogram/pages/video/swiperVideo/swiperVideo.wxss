@@ -1,0 +1,17 @@
+/* pages/video/swiperVideo/swiperVideo.wxss */
+page {
+  background-color: white;
+}
+
+video {
+  width: 100%;
+  height: 100%;
+}
+
+/* 头部固定 */
+.topnav {
+  position: fixed;
+  top: 0px;
+  z-index: 99;
+  width: 100%;
+}

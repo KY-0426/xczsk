@@ -1,0 +1,54 @@
+/* pages/my/sign-up/sign-up.wxss */
+page {
+  background-color: white;
+  padding-bottom: 100px;
+}
+
+/* .box{
+  
+
+  backface-visibility: hidden;
+  transition: all 1s;
+  cursor: pointer;
+ } */
+.main {
+  position: relative;
+  padding-top: 1000rpx;
+}
+
+.box {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  margin: auto;
+  width: 85%;
+  height: 1000rpx;
+  transition: all 1s;
+  backface-visibility: hidden;
+  border-radius: 10px;
+  cursor: pointer;
+  border-radius: 20rpx;
+  box-shadow: 0px 1px 36px 0px rgba(77, 77, 77, 0.3);
+}
+
+.b1 {
+  background: url('https://636c-cloud1-6g8xdvmffa0e841f-1309493752.tcb.qcloud.la/images/ef018856f9de434ddd9441e60380765.png?sign=cf59846ffef99155291a93f6134ae8c2&t=1653305270');
+  background-size: cover;
+}
+
+.b2 {
+  transform: rotateY(-180deg);
+}
+
+.header {
+  font-size: large;
+  /* color: #0081ff; */
+  color: #1cbcb4;
+}
+
+.board {
+  color: #8ad9d6;
+  font-weight: bold;
+}

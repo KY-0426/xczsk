@@ -1,0 +1,77 @@
+<scroll-view scroll-y>
+  <view class="UCenter-bg" style="background: url(https://636c-cloud1-6g8xdvmffa0e841f-1309493752.tcb.qcloud.la/images/eb965c8fdbbb1e4ca4e77175e3fc2e6.jpg?sign=44926a2115384e23ca2fb6d51624b2e2&t=1653617086);background-size: cover;">
+    <view wx:if="{{hasUserInfo}}" style="width: 745rpx; height: 497rpx; display: block; box-sizing: border-box">
+      <view style="width: 745rpx; height: 196rpx; display: block; box-sizing: border-box">
+        <image src="../../images/xiegang.png" style="position: relative; left: 542rpx; top: 122rpx"></image>
+        <view style="float: right; position: relative; top: 144rpx; right: 200rpx; width: 26rpx; height: 57rpx; display: block; box-sizing: border-box">
+          <text class="text-white text-ABC">{{month}}</text>
+        </view>
+        <view style="float: right; position: relative; top: 211rpx; right: 40rpx; left: -40rpx">
+          <text class="text-white">{{Day}}</text>
+        </view>
+      </view>
+      <view class="cu-avatar xl round" style="width: 167rpx; height: 167rpx; display: inline-block; box-sizing: border-box; left: 82rpx; top: 64rpx; position: relative; border-radius: 100% ; background: url({{userInfo.avatarUrl}}); background-repeat:round" catchtap="onAvatarTap"></view>
+      <text style="width: 337rpx; height: 73rpx; display: flex; box-sizing: border-box; left: 274rpx; top: -62rpx; position: relative; color: white">{{userInfo.nickName}}</text>
+    </view>
+    <view wx:else style="width: 750rpx; height: 500rpx; display: block; box-sizing: border-box">
+      <button bindtap="getUserProfile" role="button" class="cu-btn round bg-cyan" style="width: 484rpx; height: 53rpx; display: inline-flex; box-sizing: border-box; left: 131rpx; top: 368rpx; position: relative">登录</button>
+    </view>
+  </view>
+  <view class="padding-top padding-bottom flex text-center text-grey bg-white shadow-warp" data-storagekey="visitTotal_num" catchtap="onLikeListTap" style="width: 631rpx; height: 158rpx; display: flex; box-sizing: border-box; left: 60rpx; top: -37rpx; position: relative; border-radius: 14px">
+    <view class="flex flex-sub flex-direction solid-right ">
+      <view class="text-xxl text-orange">{{visitTotal}}</view>
+      <view class="margin-top-sm">
+        <text class="cuIcon-attentionfill"></text> 看过
+      </view>
+    </view>
+    <view class="flex flex-sub flex-direction solid-right " data-storagekey="collection_OK" catchtap="onLikeListTap">
+      <view class="text-xxl text-blue">{{starCount}}</view>
+      <view class="margin-top-sm">
+        <text class="cuIcon-favorfill"></text> 收藏
+      </view>
+    </view>
+    <view class="flex flex-sub flex-direction" data-storagekey="likes_OK" catchtap="onLikeListTap">
+      <view class="text-xxl text-green">{{forksCount}}</view>
+      <view class="margin-top-sm">
+        <text class="cuIcon-appreciatefill"></text> 点赞
+      </view>
+    </view>
+  </view>
+  <view class="cu-list menu card-menu margin-top-xl margin-bottom-xl shadow-lg radius" style="border-radius: 16px;display: block; box-sizing: border-box; margin: 50rpx 60rpx; box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.2)">
+    <view class="cu-item arrow" style="position: relative">
+      <navigator class="content" url="/pages/my/sign-up/sign-up" hover-class="none">
+        <image src="https://636c-cloud1-6g8xdvmffa0e841f-1309493752.tcb.qcloud.la/icon/cc90e37fe8992241fe5c17acb7446d8.jpg?sign=cb02d7ade1761bc674e67366ae7f371f&t=1652954459" class="png" mode="aspectFit"></image>
+        <text class="text-grey">签到</text>
+      </navigator>
+    </view>
+    <view class="cu-item arrow" style="position: relative">
+      <button class="cu-btn content" open-type="contact">
+        <image src="cloud://cloud1-6g8xdvmffa0e841f.636c-cloud1-6g8xdvmffa0e841f-1309493752/icon/a8fb9c4a756be110159cad0e2bf30ac.jpg" class="png" mode="aspectFit"></image>
+        <text class="text-grey">联系客服</text>
+      </button>
+    </view>
+    <view class="cu-item arrow">
+      <navigator class="content" url="/pages/my/about/about" hover-class="none">
+        <image src="https://636c-cloud1-6g8xdvmffa0e841f-1309493752.tcb.qcloud.la/icon/f62bdfde6ede2f7b93075173919a15e.png?sign=025aa63c0896fd68c7c43d4b351306ca&t=1653036216" class="png" mode="aspectFit"></image>
+        <text class="text-grey">版权声明</text>
+      </navigator>
+    </view>
+    <view class="cu-item arrow">
+      <button class="cu-btn content" open-type="feedback" style="width: 598rpx; height: 64rpx; display: flex; box-sizing: border-box; left: 0rpx; top: 0rpx">
+        <image src="cloud://cloud1-6g8xdvmffa0e841f.636c-cloud1-6g8xdvmffa0e841f-1309493752/icon/a637b088a6b242397b9a6ffe1e96cd8.jpg" class="png" mode="aspectFit"></image>
+        <text class="text-grey">反馈</text>
+      </button>
+    </view>
+    <view class="cu-item arrow">
+      <!-- <navigator target="miniProgram" open-type="navigate" app-id="{{ appId }}" extra-data="{{ extraData }}" version="release"class="content" style="width: 598rpx; height: 64rpx; display: flex; box-sizing: border-box; left: 0rpx; top: 0rpx">
+        <image src="cloud://cloud1-6g8xdvmffa0e841f.636c-cloud1-6g8xdvmffa0e841f-1309493752/icon/a637b088a6b242397b9a6ffe1e96cd8.jpg" class="png" mode="aspectFit"></image>
+        <text class="text-grey">兔小巢</text>
+      </navigator> -->
+      <view class="content" bindtap="opentuxiaochao">
+        <image src="https://txc.qq.com/favicon.ico" class="png" mode="aspectFit"></image>
+        <text class="text-grey">兔小巢</text>
+      </view>
+    </view>
+
+  </view>
+</scroll-view>

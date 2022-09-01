@@ -1,0 +1,20 @@
+<!--pages/card/card.wxml-->
+<cu-custom bgColor="bg-white" isBack="{{true}}">
+	<view slot="backText"><text class=" text-cyan text-bold">首页</text></view>
+</cu-custom>
+
+<import src="../template/template.wxml"></import>
+<view  wx:if="{{menu_id == '8f75309d6273968701707473701ad57e'}}" class="cu-card case" wx:for="{{article}}" wx:key="name">
+  <template is="cardTmp" data="{{...item}}"></template> 
+</view>
+<!-- 
+<view  wx:if="{{menu_id == '8f75309d6273997d0170b585113ca52d'}}" class="grid col-2" style="width: 100%; display: flex; flex-wrap: wrap;justify-content: space-between; padding:0px 10rpx 0px ;margin-top: 15rpx;">
+  <block wx:for="{{article}}" wx:key="id">
+    <template is="videoTmp" data="{{...item}}"></template>
+  </block>
+</view>
+<view  wx:if="{{menu_id == '058dfefe6273e171018bbc805e6fd016'}}">
+  <view wx:for="{{article}}" wx:key="id"  class="cu-card case">
+    <template is="cardTmp" data="{{...item}}"></template>
+  </view>
+</view> -->

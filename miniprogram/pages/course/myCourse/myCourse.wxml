@@ -1,0 +1,30 @@
+<!--pages/course/myCourse/myCourse.wxml-->
+<!--pages/course/courseList/courseList.wxml-->
+<cu-custom bgColor="bg-white" isBack="{{true}}">
+  <view slot="backText">课程</view>
+</cu-custom>
+<block wx:if="{{courseList}}">
+<view class="cu-card article no-card padding-top" wx:for="{{courseList}}" wx:key="id">
+  <view class="cu-item shadow" catchtap="oncoursepaperTap" data-id="{{item._id}}">
+    <view class="content">
+      <image src="{{item.course_icon}}" mode="aspectFill" style="height: 230rpx; width: 200rpx;border-radius: 13rpx;"></image>
+      <view class="desc padding-left-sm ">
+        <view class="text-xl ">{{item.course_name}}</view>
+        <view class="padding-top-sm">
+          <view class="light round">订单号：{{item.order_num}}</view>
+        </view>
+        <view class=" text-content padding-top-sm">{{item.course_content}}</view>
+      </view>
+    </view>
+  </view>
+</view>
+</block>
+
+<view wx:else="{{courseList}}" class="flex solid-bottom padding justify-around">
+  <view class="cu-list grid  bg-grey ">
+    <view class="cu-item ">
+      <text class="cuIcon-questionfill lg text-gray"></text>
+      <text>抱歉！您还没有报名</text>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,3 @@
+/* pages/pubuliu/pubuliu.wxss */
+/* 引入模块的wxss */
+@import "../template/pubuliu.wxss";

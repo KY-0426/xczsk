@@ -1,0 +1,101 @@
+<!--pages/pubuliu/paper/paper.wxml-->
+<!--pages/paper/paper.wxml-->
+<cu-custom bgColor="bg-white" isBack="{{true}}">
+  <view slot="backText">
+  <image class="cu-avatar round  margin-left" src="{{paper.author_img}}" lazy-load="{{true}}"></image>
+  <text class="text-black">{{paper.author_name}}</text>
+  </view>
+</cu-custom>
+<!-- 内容 -->
+<swiper indicator-dots="true" style="height: 1000rpx;" wx:if="{{imgswiper}}">
+  <block wx:for="{{imgswiper}}" wx:key="id">
+    <swiper-item >
+          <image src="{{item}}" mode="aspectFit" style="width: 100%; height:100%;" ></image>
+      </swiper-item>
+    </block>
+  </swiper>
+  <!-- <view class="text-xl padding text-center">{{paper.title}}</view> -->
+ 
+<view class="padding bg-white " style="padding-bottom: 100px;">
+  <rich-text  user-select="{{true}}" nodes="{{contentInfo}}"></rich-text>
+  <view class="solids-top" style="text-align: center; padding-top: 10px;margin: 20rpx;">  
+    <view class="text-sx text-right ">{{paper.date}}</view>
+  </view>
+</view>
+
+<view class="box" style="position: fixed; bottom:0rpx;width: 100%;">
+  <view class="cu-bar tabbar bg-white">
+    <!-- 点赞 -->
+    <view class="action" bindtap="onlikeTap">
+      <view class="cuIcon-cu-image">
+        <image wx:if="{{like_OK}}" src="cloud://cloud1-6g8xdvmffa0e841f.636c-cloud1-6g8xdvmffa0e841f-1309493752/icon/0a3062eaa8228d8ab574685e320d6e5.png"></image>
+        <image wx:else="{{like_OK}}" src="cloud://cloud1-6g8xdvmffa0e841f.636c-cloud1-6g8xdvmffa0e841f-1309493752/icon/37c016114ecc90ef57d77db8457e448.png"></image>
+      </view>
+      <view class="text-black">点赞</view>
+    </view>
+    <!-- 收藏 -->
+    <view class="action" bindtap="oncollectionTap">
+      <view class="cuIcon-cu-image">
+        <image wx:if="{{collection_OK}}" src="cloud://cloud1-6g8xdvmffa0e841f.636c-cloud1-6g8xdvmffa0e841f-1309493752/icon/edb2c8b6d2a75c6d777d891ba33eb6d.png"></image>
+        <image wx:else="{{collection_OK}}" src="cloud://cloud1-6g8xdvmffa0e841f.636c-cloud1-6g8xdvmffa0e841f-1309493752/icon/8b9a7d307403cd8a6b7adae819dde12.png"></image>
+      </view>
+      <view class="text-gray">收藏</view>
+    </view>
+    <!-- 评论 -->
+    <button class="action bg-white" bindtap="showModal" data-target="bottomModal">
+      <view class="cuIcon-cu-image" style="padding-bottom: 2px;  height: 110%;">
+        <image  src="https://636c-cloud1-6g8xdvmffa0e841f-1309493752.tcb.qcloud.la/icon/7b4bc7f4779cbafbc98910a67bad3cd.png?sign=1a6cc6f5dd423055eb93fea88696c53b&t=1652706535"></image>
+        <!-- <view class="cu-tag badge">{{paper.comments.length}}</view> -->
+      </view>
+      <view class="text-gray">评论</view>
+    </button>
+    <!-- 分享 -->
+    <button class="action bg-white" open-type="share">
+      <view class="cuIcon-cu-image">
+        <image src="cloud://cloud1-6g8xdvmffa0e841f.636c-cloud1-6g8xdvmffa0e841f-1309493752/icon/b927a5f365f98e2fefc7cdb53f341fd.png"></image>
+        <view class="cu-tag badge"></view>
+      </view>
+      <view class="text-gray">分享</view>
+    </button>
+  </view>
+</view>
+<!-- 评论区 模态框 -->
+<view class="cu-modal bottom-modal {{modalName=='bottomModal'?'show':''}}" style="position: fixed; bottom: 0rpx; z-index: 3;">
+  <view class="cu-dialog">
+    <view class="cu-bar bg-white">
+      <view class="action text-green">{{Comments.length?Comments.length:'0'}}条评论</view>
+      <view class="action text-blue" bindtap="hideModal">关闭</view>
+    </view>
+    <view style="height: 100%;" class="grid">
+      <scroll-view scroll-y style="height: 800rpx;" lower-threshold="newquerycommnets" scroll-with-animation="{{true}}" enable-flex="{{true}}">
+        <!-- 评论区内容 -->
+        <view class="cu-list menu-avatar" style="width: 100%; padding-bottom: 80rpx;">
+          <view class="cu-item" wx:for="{{Comments}}" wx:for-item="comments1" wx:key="index" data-deletecomment="{{comments1}}" bindlongpress="showModalMenu">
+            <view class="cu-avatar round lg" style="background-image:url({{comments1.avatarUrl}});"></view>
+            <view class="content">
+              <view class="text-grey">{{comments1.nickName}}</view>
+              <view class="text-gray text-sm flex">
+                <text class="text-cut">
+                  <text class="margin-right-xs"></text>{{comments1.inputContent}}
+                </text>
+              </view>
+            </view>
+            <view class="action">
+              <wxs src="../../../wxs/format.wxs" module="format"></wxs>
+              <view class="text-grey text-xs">{{format.dateFormat(comments1.time,'M月D日 h:m')}}</view>
+            </view>
+          </view>
+        </view>
+      </scroll-view>
+    </view>
+  </view>
+</view>
+<!-- 输入框 -->
+<view class="bottom-modal" style="z-index: 9; display: {{inputshow}};position: fixed; bottom:0rpx; ">
+  <view class="cu-bar foot input cur " style="padding-bottom: {{20+inputHeight}}rpx; padding-top: 20rpx;">
+    <input class="solid-bottom" style="width:200px;" bind:focus="inputFocus" bind:blur="changeInputBlur"confirm-type="send" value="{{inputContent}}" bindinput="InputContent" adjust-position="{{false}}" maxlength="300" cursor-spacing="10" placeholder="评论"></input>
+    <view>
+      <button style="width: 150rpx;" class="cu-btn round bg-blue shadow" role="button" catchtap="SendCommentsTap">发送</button>
+    </view>
+  </view>
+</view>

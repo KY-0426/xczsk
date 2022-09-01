@@ -1,0 +1,180 @@
+<!--pages/course/paper/paper.wxml-->
+<!-- 返回 -->
+<cu-custom bgColor="bg-white" isBack="{{true}}">
+  <view slot="backText"><text class=" text-cyan text-bold">课程</text></view>
+</cu-custom>
+<!-- 图片 -->
+<image src="{{course.course_icon}}" mode="aspectFill" style="width: 100%; height: 600rpx;"></image>
+<!-- 标题 -->
+<view class="text-content text-lg padding-lr padding-top" style="height: 220rpx;">
+  <view class="cu-tag bg-cyan light  round">{{course.menu_name}}</view>
+  <text class="text-bold"> {{course.course_name}}</text>
+  <view class="grid col-4 margin-bottom text-center">
+    <view class="padding">{{course.course_price}}元<view class="text-sm text-gray">价格</view>
+    </view>
+    <view class="padding">{{contentList.length}}节<view class="text-sm text-gray">课时数</view>
+    </view>
+    <view class="padding">永久<view class="text-sm text-gray">有效期</view>
+    </view>
+    <view class="padding">答疑<view class="text-sm text-gray">服务</view>
+    </view>
+  </view>
+</view>
+<!-- 保障 -->
+<!-- <view class="text-lg flex justify-between  padding-lr solids-top padding-top" style="height: 100rpx; ">
+  <view class="light">保障
+    <text class="padding-left">一周没听课全额退款</text>
+  </view>
+  <view>></view>
+</view> -->
+
+<!-- 课程大纲 -->
+<view class="bg-gray" style="width: 100%; height: 15rpx;"></view>
+<view class=" text-xl flex justify-between  padding-lr solids-top padding-top" style="height: 120rpx; ">
+  <view class=" light">
+    <view class="text-bold">课程大纲</view>
+    <view class="text-sm">
+      <text class=" text-bold">共{{contentList.length}}节</text>
+      <text class="text-gray padding-left">报名后永久有效</text>
+    </view>
+  </view>
+</view>
+
+<block wx:if="{{CourseOK}}">
+  <view class="text-lg flex justify-between  padding-lr  padding-top" style="height: 100rpx; " wx:for="{{contentList}}" wx:key="id" wx:if="{{index<3}}" catchtap="onOpenstudioOKTap" data-id="{{item._id}}">
+    <view class="light">{{index+1}}
+      <text class="padding-left">{{item.course_title}}</text>
+    </view>
+    <view class="text-cyan" >观看</view>
+  </view>
+</block>
+<block wx:else >
+  <view class="text-lg flex justify-between  padding-lr  padding-top" style="height: 100rpx; " wx:for="{{contentList}}" wx:key="id" wx:if="{{index<3}}" catchtap="onOpenstudioTap" data-id="{{item._id}}">
+    <view class="light">{{index+1}}
+      <text class="padding-left">{{item.course_title}}</text>
+    </view>
+    <view class="text-cyan" wx:if="{{index<1}}">试看</view>
+  </view>
+</block>
+<navigator wx:if="{{contentList[0]._id}}" class="padding text-center text-bold" style="height: 100rpx;" url="../courseOutline/courseOutline?id={{contentList[0]._id}}">查看全部</navigator>
+
+<!-- 授课老师 -->
+<view class="bg-gray" style="width: 100%; height: 15rpx;"></view>
+<view class=" text-xl flex justify-between  padding-lr solids-top padding-top" style="height: 100rpx; ">
+  <view class="text-bold light">授课老师</view>
+</view>
+<view class="padding">
+  <view class="padding" style="border-radius: 30rpx; background-color: whitesmoke;">
+    <view class="flex " style="height: 150rpx;">
+      <view wx:for="{{course_teacher}}" wx:key="id">
+        <image class="margin-right" src="{{item.teacher_img}}" mode="aspectFill" style="height: 100rpx; width: 100rpx;border-radius: 100%;"></image>
+        <view class="text-gray padding-right padding-top-xs text-center text-sm"> <text>{{item.teacher_name}}</text> </view>
+      </view>
+    </view>
+  </view>
+</view>
+
+
+<!-- 评论 -->
+<block wx:if="{{pl}}">
+  <view class="bg-gray" style="width: 100%; height: 15rpx;"></view>
+  <view class=" text-xl flex justify-between  padding-lr solids-top padding-top" style="height: 100rpx; ">
+    <view class="text-bold light">评论</view>
+    <!-- <view class="text-lg">暂无评论</view> -->
+  </view>
+  <view class="cu-list menu-avatar">
+    <view class="cu-item">
+      <view class="cu-avatar round lg" style="background-image:url(https://636c-cloud1-6g8xdvmffa0e841f-1309493752.tcb.qcloud.la/touxiang/1653613309515.png?sign=fe0bda875f57c4539b754074a8712adb&t=1653989569);"></view>
+      <view class="content flex-sub">
+        <view class="text-grey">大哥</view>
+        <view class="text-gray text-sm flex justify-between">
+          评论内容评论内容评论内容评论内容
+        </view>
+      </view>
+      <view class="padding-right">1天前</view>
+    </view>
+  </view>
+  <navigator class="padding text-center text-bold" style="height: 100rpx;">查看全部</navigator>
+</block>
+
+
+<!-- 课程详情 -->
+<view class="bg-gray" style="width: 100%; height: 15rpx;"></view>
+<view class=" text-xl flex justify-between  padding-lr solids-top padding-top" style="height: 100rpx; ">
+  <view class="text-bold light">课程详情</view>
+</view>
+<block wx:for="{{course.course_details}}" wx:key="id">
+  <image src="{{item}}" mode="widthFix" style="width: 100%; "></image>
+</block>
+<!-- 报名须知 -->
+<view class="bg-gray" style="width: 100%; height: 15rpx;"></view>
+<view class=" text-xl flex justify-between  padding-lr solids-top padding-top" style="height: 100rpx; ">
+  <view class="text-bold light">报名须知</view>
+</view>
+<view class=" text-lg flex justify-between  solids-top padding">
+  <view class="light">仅供学习使用，资料网络收集</view>
+</view>
+
+
+<!-- 立即报名 -->
+<view class="bg-white" style="position:fixed; bottom:0;width: 750rpx;">
+  <view class="cu-bar bg-white tabbar border shop">
+    <button class="action bg-white" open-type="contact">
+      <view class="cuIcon-service text-green">
+        <!-- <view class="cu-tag badge"></view> -->
+      </view>
+      客服
+    </button>
+    <view class="action" catchtap="onshoucangTap">
+      <view class="cuIcon-cu-image" >
+        <image wx:if="{{shoucangCourseOK}}" src="cloud://cloud1-6g8xdvmffa0e841f.636c-cloud1-6g8xdvmffa0e841f-1309493752/icon/edb2c8b6d2a75c6d777d891ba33eb6d.png"></image>
+        <image wx:else="{{shoucangCourseOK}}" src="cloud://cloud1-6g8xdvmffa0e841f.636c-cloud1-6g8xdvmffa0e841f-1309493752/icon/8b9a7d307403cd8a6b7adae819dde12.png"></image>
+      </view>
+      <view class="text-black">收藏</view>
+    </view>
+    <!-- <view class="action">
+      <view class="cuIcon-cart">
+        <view class="cu-tag badge">99</view>
+      </view>
+      购物车
+    </view> -->
+    <navigator wx:if="{{CourseOK}}" class="cu-btn bg-orange shadow-blur round" style="height: 80rpx; width: 500rpx;" url="../courseOutline/courseOutline?id={{contentList[0]._id}}">立即学习</navigator>
+    <button wx:else="{{CourseOK}}" class="cu-btn bg-cyan shadow-blur round" style="height: 80rpx; width:500rpx;" bindtap="showModal" data-target="bottomModal">立即报名</button>
+
+  </view>
+</view>
+
+<!-- 订单 模态框 -->
+<view class="cu-modal bottom-modal {{modalName=='bottomModal'?'show':''}}" style="position: fixed; bottom: 0rpx; z-index: 3;">
+  <view class="cu-dialog">
+    <view class="cu-bar bg-white">
+      <view class="action text-green text-center">确认订单</view>
+      <view class="action text-blue" bindtap="hideModal">关闭</view>
+    </view>
+    <view style="height: 100%;" class="grid">
+      <scroll-view scroll-y style="height: 800rpx;" lower-threshold="newquerycommnets" scroll-with-animation="{{true}}" enable-flex="{{true}}">
+        <view class="cu-card article no-card padding-top">
+          <view class="cu-item shadow">
+            <view class="content">
+              <image src="{{course.course_icon}}" mode="aspectFill" style="height: 230rpx; width: 200rpx;border-radius: 13rpx;"></image>
+              <view class="desc padding-left-sm text-left">
+                <view class="text-xl text-bold ">{{course.course_name}}</view>
+                <view class="padding-top-sm">
+                  <block wx:for="{{course_teacher}}" wx:key="id" wx:for-item="teacher">
+                    <text class="light round">{{teacher.teacher_name}} </text>
+                  </block>
+                </view>
+                <view class="text-content padding-top-sm">{{course.course_content}}</view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </scroll-view>
+      <view class="bg-white" style="position:fixed; bottom:0;width: 750rpx;">
+        <navigator url="../studio/studio" style="height: 100rpx;">
+          <button class="bg-cyan shadow-blur" style="height: 100%; width: 100%;" catchtap="onOKDingdanTap">确认</button>
+        </navigator>
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,18 @@
+<!--pages/about/about.wxml-->
+<cu-custom bgColor="bg-white" isBack="{{true}}">
+  <view slot="backText">版权声明</view>
+</cu-custom>
+<view class="cu-timeline">
+  <view class="cu-time">2022</view>
+  <view class="cu-item">
+    <view class="content">
+       <text>声明：</text>{{banquan}}
+    </view>
+  </view>
+  <view class="cu-item">
+    <view class="content">
+       联系方式：xczskxcx@163.com
+    </view>
+  </view>
+</view>
+

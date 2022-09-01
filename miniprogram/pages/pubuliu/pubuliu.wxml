@@ -1,0 +1,17 @@
+<!--pages/pubuliu/pubuliu.wxml-->
+<cu-custom bgColor="bg-white" isBack="{{true}}">
+	<view slot="backText">生活圈</view>
+</cu-custom>
+<import src="../template/pubuliu.wxml"></import>
+<view class="content">
+  <view class="left">
+    <block wx:for="{{noramalData}}" wx:key="index">
+      <template is="{{msg1}}" data="{{...item}}" wx:if="{{index%2==0}}"></template>
+    </block>
+  </view>
+  <view class="right">
+    <block wx:for="{{noramalData}}" wx:key="index">
+      <template is="{{msg1}}" data="{{...item}}" wx:if="{{index%2==1}}"></template>
+    </block>
+  </view>
+</view>

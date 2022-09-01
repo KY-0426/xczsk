@@ -1,0 +1,116 @@
+<!-- 菜单模板 -->
+<template name="menuTmp">
+  <navigator wx:if="{{show}}" url="{{menu_src}}" >
+    <view class="grids-cell-icon">
+      <image src="{{menu_icon}}" style="width: 130rpx;height: 130rpx;border-radius: 100%;" mode="aspectFill" />
+    </view>
+  </navigator>
+</template>
+<!-- 卡片1 模板-->
+<template name="articleTmp">
+  <view class="cu-card article" data-id="{{_id}}" catchtap="paperTap">
+    <view class="cu-item shadow" style="border:1px solid rgba(2, 53, 55, 0.12); border-radius: 20rpx;">
+      <view class="title">
+        <view class="text-cut">{{title}}</view>
+      </view>
+      <view class="content">
+        <image src="{{img}}" 	lazy-load="{{true}}" mode="aspectFill"></image>
+        <view class="desc">
+          <view class="text-content">{{content}}</view>
+          <view class="text-gray text-sm text-right padding-right">
+            <text class="cuIcon-attentionfill  margin-lr-xs"></text> {{views_num?views_num:'浏览量'}}
+            <text class="cuIcon-appreciatefill margin-lr-xs"></text>{{like_num?like_num:'点赞'}}
+            <text class="cuIcon-messagefill margin-lr-xs"></text> {{comments.length?comments.length:'评论'}}
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</template>
+
+<!-- 卡片2模板   有日期-->
+<template name="cardTmp">
+  <view class="cu-item" style=" box-shadow: 0rpx 2rpx 5rpx 3rpx #e9e9e9; " bindtap="paperTap" data-id="{{_id}}">
+    <view class="image" wx:if="{{img}}">
+      <image src="{{img}}" 	lazy-load="{{true}}" mode="aspectFill"></image>
+      <view class="cu-bar bg-shadeBottom">
+        <text class="text-cut">{{title}}</text>
+      </view>
+    </view>
+    <view wx:else style=" text-align: center; font-size:30rpx; padding-top: 50rpx;">
+      {{title}}
+    </view>
+    <view class="cu-list menu-avatar">
+      <view class="cu-item">
+        <view class="cu-avatar round lg" style="background-image:url({{author_img}});"></view>
+        <view class="content flex-sub">
+          <view class="text-grey">{{author_name}}</view>
+          <view class="text-gray text-sm flex justify-between">
+            {{format.dateFormat(date,'Y/M/D h:m')}}
+            <wxs src="../../wxs/format.wxs" module="format"></wxs>
+            <view class="text-gray text-sm">
+              <text class="cuIcon-attentionfill margin-lr-xs"></text> {{views_num?views_num:'浏览量'}}
+              <text class="cuIcon-appreciatefill margin-lr-xs"></text>{{like_num?like_num:'点赞'}}
+              <text class="cuIcon-messagefill margin-lr-xs"></text> {{comments.length?comments.length:'评论'}}
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</template>
+
+
+<!-- 视频卡片 -->
+<template name="videoTmp">
+  <view class="margin-bottom-sm margin-left-xs  grid-square" style="width: 352rpx; box-shadow: 0rpx 2rpx 5rpx 3rpx #e9e9e9; border-radius: 5px; ">
+    <view class="image bg-white" catchtap="onswiperVideoTap" data-id="{{_id}}">
+      <image class="basis-sm bg-grey " mode="scaleToFill" 	lazy-load="{{true}}" src="{{img}}" style="height: 230rpx; border-radius: 5px 5px 0px 0px; "></image>
+    </view>
+    <view class="menu-avatar bg-white radius " catchtap="onswiperVideoTap" data-id="{{_id}}">
+      <view class="padding-left-sm text-content text-bold radius text-cut" style="height:50rpx;">
+        {{title}}
+      </view>
+      <view class="text-gray text-xs text-right  padding-top-sm padding-bottom-sm padding-right-sm">
+        <text class="cuIcon-attentionfill margin-lr-xs"></text> {{views_num?views_num:'浏览量'}}
+        <text class="cuIcon-appreciatefill margin-lr-xs"></text> {{like_num?like_num:'点赞'}}
+        <text class="cuIcon-messagefill margin-lr-xs"></text> {{comments.length?comments.length:'评论'}}
+      </view>
+    </view>
+  </view>
+</template>
+
+<!--农技知识视频卡片-->
+<template name="ATTmp">
+  <view class="margin-top-sm bg-white" style="position: relative;" catchtap="onswiperVideoTap" data-id="{{_id}}">
+    <view class="cu-list menu-avatar" catchtap="onswiperVideoTap" data-id="{{_id}}">
+      <view class="cu-item">
+        <view class="cu-avatar round" style="background-image:url({{author_img}});  width: 78rpx; height: 78rpx;"></view>
+        <view class="content" style="left: 120rpx;">
+          <view class="text-black">{{author_name}}</view>
+          <view class="text-black text-sm flex justify-between">
+            {{format.dateFormat(date,'Y/M/D h:m')}}
+            <wxs src="../../wxs/format.wxs" module="format"></wxs>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="padding-left padding-bottom" catchtap="onswiperVideoTap" data-id="{{_id}}">
+      <text class="text-xl text-black ">{{title}}</text>
+    </view>
+    <!-- <video src="{{url}}" style="height: 450rpx;width: 100%;" 	lazy-load="{{true}}" object-fit="fill" poster="{{img}}" title="{{title}}"></video> -->
+    <image src="../../images/home-play.png" style="position:absolute;top: 200rpx; left: 0;bottom: 0; right: 0;width: 82rpx;height: 80rpx;z-index: 5;margin: auto;"></image>
+    <image src="{{img}}" style="height: 450rpx;width: 100%;" 	lazy-load="{{true}}" ></image>
+  </view>
+  <view class="grid col-4 margin-bottom text-center text-black  align-end bg-white">
+    <view class="padding text-xxl" catchtap="onlikeTap" data-id="{{_id}}" >
+      <text class="cuIcon-appreciate margin-lr-xs  {{like_OK?'text-red':' '}}"></text><text class="text-lg">{{like_num}}</text>
+    </view>
+    <view class="padding text-xxl" catchtap="onswiperVideoTap" data-id="{{_id}}"><text class="cuIcon-attention margin-lr-xs"></text>
+      <text class="text-lg"> {{views_num?views_num:'浏览量'}}</text>
+    </view>
+    <view class="padding text-xxl" catchtap="onswiperVideoTap" data-id="{{_id}}"><text class="cuIcon-message margin-lr-xs"></text><text class="text-lg">{{comments.length?comments.length:'评论'}}</text></view>
+    <view class="padding text-xxl  align-center"><button open-type="share"><text class="cuIcon-weixin text-green margin-lr-xs"></text><text class="text-lg">分享</text></button></view>
+    <!-- <view class="padding text-xxl  align-center" catchtap="WXshareVideo" data-id="{{_id}}"><text class="cuIcon-weixin text-green margin-lr-xs"></text><text class="text-lg">分享</text></view> -->
+  </view>
+</template>

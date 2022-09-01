@@ -1,0 +1,5 @@
+/* pages/course/serchCourse/serchCourse.wxss */
+page{
+  padding-top: 100rpx;
+  background-color: white;
+}

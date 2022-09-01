@@ -1,0 +1,19 @@
+<!--pages/my/cards/cards.wxml-->
+<cu-custom bgColor="bg-white" isBack="{{true}}">
+  <view slot="backText">{{menu_name}}的文章</view>
+</cu-custom>
+
+<view wx:if="{{article}}">
+  <import src="../../template/template.wxml"></import>
+  <block wx:for="{{article}}">
+    <template is="articleTmp"  data="{{...item}}"></template>
+  </block>
+</view>
+<view wx:else class="flex solid-bottom padding justify-around">
+  <view class="cu-list grid  bg-grey ">
+  <view class="cu-item ">
+    <text class="cuIcon-questionfill lg text-gray"></text>
+    <text>抱歉！您还没有{{menu_name}}</text>
+  </view>
+</view>
+</view>

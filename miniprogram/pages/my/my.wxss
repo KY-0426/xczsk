@@ -1,0 +1,35 @@
+/* pages/my/my.wxss */
+page{
+  background-color: #f4fafb;
+}
+
+.UCenter-bg text {
+  font-size: 48rpx;
+}
+
+.UCenter-bg image {
+  width: 160rpx;
+  height: 160rpx;
+}
+
+.UCenter-bg .gif-wave{
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  z-index: 99;
+  mix-blend-mode: screen;  
+  height: 100rpx;   
+}
+
+map,.mapBox{
+  left: 0;
+  z-index: 99;
+  mix-blend-mode: screen;  
+  height: 100rpx;   
+}
+
+map,.mapBox{
+  width: 750rpx;
+  height: 300rpx;
+}

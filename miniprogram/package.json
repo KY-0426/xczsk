@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "@miniprogram-component-plus/video-swiper": "^1.0.1",
+    "baidu-aip-sdk": "^4.16.2"
+  }
+}

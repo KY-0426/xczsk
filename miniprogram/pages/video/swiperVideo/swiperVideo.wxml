@@ -1,0 +1,56 @@
+<view class="topnav">
+  <cu-custom bgColor="bg-white" isCustom="{{true}}">
+  </cu-custom>
+  <!-- <video src="{{oneList.url}}" poster="{{oneList.img}}"	title="{{oneList.title}}" style="height: 430rpx;" object-fit="fill"  autoplay="{{false}}"></video> -->
+  <txv-video vid="{{oneList.vid}}" autoplay="{{autoplay}}" ></txv-video>
+  <view>
+  
+</view>
+</view>
+<view>
+</view>
+<view class="cu-card dynamic no-card" style="position: absolute; top: 620rpx; padding-bottom: 100rpx; width: 100%;" >
+  <view class="cu-item shadow" >
+    <view class="text-content text-xl text-bold">
+      {{oneList.title}}
+    </view>
+    <view class="text-content ">
+      <rich-text nodes="{{oneList.content}}"></rich-text>
+    </view>
+    <view class="text-gray text-lg text-right padding align-center">
+      <view class="margin-lr-xs">
+          <image class="margin-lr-xs" style="width: 30rpx; height: 30rpx;" src="https://636c-cloud1-6g8xdvmffa0e841f-1309493752.tcb.qcloud.la/icon/b9c7f5bf1c85cc3231bc13d130f6d30.png?sign=d20769b0521aee1958f1c36129cf795b&t=1652953378"></image>
+          {{oneList.views_num?oneList.views_num:'浏览量'}}
+          <image class="margin-lr-xs"  wx:if="{{Videolikes_OK}}" bindtap="onlikeTap" style="width: 30rpx; height: 30rpx;"src="https://636c-cloud1-6g8xdvmffa0e841f-1309493752.tcb.qcloud.la/icon/8245cee6a62efaa3c64cd282b23ccd4.png?sign=0d7d168b8531e5bee7f4d59497891e62&t=1652953048"></image>
+          <image class="margin-lr-xs"   wx:else="{{Videolikes_OK}}" bindtap="onlikeTap"style="width: 30rpx; height: 30rpx;" src="https://636c-cloud1-6g8xdvmffa0e841f-1309493752.tcb.qcloud.la/icon/35b9de019648fbda0a6eeb248c824da.png?sign=ad9d5742de4622e0865246d377827c16&t=1652953123"></image>
+          {{oneList.like_num?oneList.like_num:'点赞'}}
+          <image class="margin-lr-xs"  style="width: 30rpx; height: 30rpx;" src="https://636c-cloud1-6g8xdvmffa0e841f-1309493752.tcb.qcloud.la/icon/6c0ff7730587df6a9814b23b7f093ba.png?sign=bd85ccf1a7d05c1cb8d10a159fc81a2a&t=1652952661"></image> 
+          {{Comments.length?Comments.length:'评论'}}
+      </view>
+    </view>
+    <view class="cu-list menu-avatar comment solids-top" >
+      <view class="cu-item" wx:for="{{Comments}}" wx:key="id" data-deletecomment="{{item}}" bindlongpress="showModalMenu">
+        <view class="cu-avatar round" style="background-image:url({{item.avatarUrl}});"></view>
+        <view class="content">
+          <view class="text-grey text-bold">{{item.nickName}}</view>
+          <view class="text-gray text-content text-df">
+            {{item.inputContent}}
+          </view>
+          <wxs src="../../../wxs/format.wxs" module="format"></wxs>
+          <view class="margin-top-sm flex justify-between">
+            <view class="text-gray text-df">{{format.dateFormat(item.time,'Y年M月D日 h:m')}}</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+
+<view class="bottom-modal" style="z-index: 9; position: fixed; bottom:0rpx; ">
+  <view class="cu-bar foot input cur " style="padding-bottom: {{20+inputHeight}}rpx; padding-top: 20rpx;">
+    <input class="solid-bottom" style="width:200px;" bind:focus="inputFocus" bind:blur="changeInputBlur"confirm-type="send" value="{{inputContent}}" bindinput="InputContent" adjust-position="{{false}}" maxlength="300" cursor-spacing="10" placeholder="评论"></input>
+    <view>
+      <button style="width: 150rpx;" class="cu-btn round bg-blue shadow" role="button" catchtap="SendCommentsTap">发送</button>
+    </view>
+  </view>
+</view>

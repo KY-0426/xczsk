@@ -1,0 +1,52 @@
+ <cu-custom bgColor="bg-white" isBack="{{false}}" left>
+    <view  slot="backText"><text class="text-xxl text-cyan text-bold">乡村知识库</text></view>
+</cu-custom>
+
+<view class=" cu-bar  search fixed bg-white" style="top:{{CustomBar}}px; " bindtap="onSearchBoxTap">
+  <view class="search-form round" style="height: 80rpx; border-radius: 30rpx; background-color: #e4efef;">
+    <text class="cuIcon-search "></text>
+    <input type="text" disabled="disabled" maxlength="0" placeholder="搜索文章"></input>
+  </view>
+  <!-- <view class="action">
+      <button class="cu-btn bg-green shadow-blur round" style="width: 120rpx">搜索</button>
+    </view> -->
+</view>
+
+<!-- 菜单 -->
+<view style="margin: 10rpx 7px; ">
+  <import src="../template/template.wxml"></import>
+  <view class="flex justify-around">
+    <block wx:for="{{menus}}" wx:key="id">
+      <template is="menuTmp" data="{{...item}}"></template>
+    </block>
+    <navigator  url="{{menus[2].menu_src}}"  open-type="reLaunch">
+      <view class="grids-cell-icon">
+        <image src="{{menus[2].menu_icon}}"  style="width: 130rpx;height: 130rpx;border-radius: 100%;" mode="aspectFill" />
+      </view>
+    </navigator>
+  </view>
+</view>
+<!-- 轮播图 -->
+<swiper class="card-swiper square-dot" indicator-dots="true" circular="true" autoplay="true" interval="5000" duration="500" bindchange="cardSwiper" indicator-color="#8799a3" indicator-active-color="#6fd4d0" style="width: 100%;">
+  <swiper-item wx:for="{{swiperList}}" wx:key="id" class="{{cardCur==index?'cur':''}}">
+    <navigator wx:if="{{item.type=='image'}}"  url="{{item.article_id?'../pubuliu/paper/paper?paper_id='+item.article_id:''}}"class="swiper-item" style="border-radius: 50rpx; width: 666rpx; height: 340rpx;">
+     <image src="{{item.img}}" mode="aspectFill"></image>
+    </navigator>
+    <navigator wx:if="{{item.type=='video'}}" url="{{item.video_id?'../video/swiperVideo/swiperVideo?video_id='+item.video_id: ''}}"class="swiper-item" style="border-radius: 50rpx; width: 666rpx; height: 340rpx;" >
+      <video src="{{item.url}}" autoplay loop muted show-play-btn="{{false}}" controls="{{false}}" objectFit="cover"></video>
+    </navigator>
+  </swiper-item>
+</swiper>
+
+<!-- 推荐文章 -->
+<view  wx:if="{{article}}">
+  <import src="../template/template.wxml"></import>
+  <!-- <title-action-bar title="推荐文章"></title-action-bar> -->
+  <view class=" text-xl flex justify-between padding-top-xl padding-lr-lg " style="height: 100rpx; padding-bottom: 60rpx;">
+  <view class="text-bold light" style="color: #406869;"> 推荐文章</view>
+  <view class="text-lg" style="position: relative; top: 0;"  bindtap="huanyihuan">换一换</view>
+</view>
+  <block  wx:for="{{article}}" wx:key="id">
+    <template is="articleTmp" data="{{...item}}"></template>
+  </block>
+</view>

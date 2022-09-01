@@ -1,0 +1,72 @@
+<view class="container">
+  <swiper class="video-swiper" circular="{{circular}}" easing-function="{{easingFunction}}" vertical current="0" duration="{{duration}}" bindanimationfinish="animationfinish">
+    <!-- curQueue 循环会导致video重新插入，objectFit 不可变更 -->
+    <swiper-item wx:for="{{curQueue}}" wx:key="idxKey">
+      <video id="video_{{index}}" class="video" loop="{{loop}}" enable-play-gesture enable-progress-gesture show-center-play-btn="{{false}}" controls="{{false}}" src="{{item.url}}" data-id="{{item.id}}" object-fit="{{item.objectFit || 'contain'}}" data-index="{{index}}"  bindplay="onPlay" bindpause="onPause" bindended="onEnded" binderror="onError" bindtimeupdate="onTimeUpdate" bindwaiting="onWaiting" bindprogress="onProgress" bindloadedmetadata="onLoadedMetaData" bind:tap="clickVideo">
+      </video>
+      <image class="img" wx:if="{{!videoBol[index]}}" data-index="{{index}}" data-id="{{item.id}}" bind:tap="clickVideo" src="../../../images/home-play.png"></image>
+      <view class="text-white" style="position: relative; left: 20rpx; bottom: 150rpx; "> {{item.title}}</view>
+      <view class="text-white flex text-center" style="position: relative; right: 20rpx; bottom: 48%; float: right; flex-wrap: wrap;flex-direction: column;">
+        <view class="padding-top-xl">
+          <view class="cu-avatar lg round " style="background-image:url('https://636c-cloud1-6g8xdvmffa0e841f-1309493752.tcb.qcloud.la/cloudbase-cms/upload/2022-05-19/i6mrmavirfjh7t4ilr9bpl5bpistmdfu_.jpg?sign=35454bb6bca67d73dbacc0d8d80157df&t=1652949656');  width: 78rpx; height: 78rpx;"></view>
+        </view>
+        <view class="padding text-xxl" catchtap="onlikeTap" data-id="{{item._id}}">
+          <text class="cuIcon-appreciate margin-lr-xs  {{item.like_OK?'text-red':''}}"></text>
+          <view class="text-lg">{{item.like_num}}</view>
+        </view>
+        <view class="padding text-xxl" bindtap="showModal" data-target="bottomModal" data-id="{{item._id}}">
+          <text class="cuIcon-message margin-lr-xs"></text>
+          <view class="text-lg">评论</view>
+        </view>
+        <view class="padding"  >
+            <button open-type="share" class="text-xxl">
+              <text class="cuIcon-weixin text-green"></text>
+            </button>
+            分享
+        </view>
+
+      </view>
+      <!-- <view style="color: #red;">video_{{item.id}}</view> -->
+    </swiper-item>
+  </swiper>
+</view>
+<!-- 评论区 模态框 -->
+<view class="cu-modal bottom-modal {{modalName=='bottomModal'?'show':''}}" style="position: fixed; bottom: 0rpx; z-index: 3;">
+  <view class="cu-dialog">
+    <view class="cu-bar bg-white">
+      <view class="action text-green">{{Comments.length?Comments.length:'0'}}条评论</view>
+      <view class="action text-blue" bindtap="hideModal">关闭</view>
+    </view>
+    <view style="height: 100%;" class="grid">
+      <scroll-view scroll-y style="height: 800rpx;" lower-threshold="newquerycommnets" scroll-with-animation="{{true}}" enable-flex="{{true}}">
+        <!-- 评论区内容 -->
+        <view class="cu-list menu-avatar" style="width: 100%; padding-bottom: 80rpx;">
+          <view class="cu-item" wx:for="{{Comments}}" wx:for-item="comments1" wx:key="index" data-deletecomment="{{comments1}}" bindlongpress="showModalMenu">
+            <view class="cu-avatar round lg" style="background-image:url({{comments1.avatarUrl}});"></view>
+            <view class="content">
+              <view class="text-grey">{{comments1.nickName}}</view>
+              <view class="text-gray text-sm flex">
+                <text class="text-cut">
+                  <text class="margin-right-xs"></text>{{comments1.inputContent}}
+                </text>
+              </view>
+            </view>
+            <view class="action">
+              <wxs src="../../../wxs/format.wxs" module="format"></wxs>
+              <view class="text-grey text-xs">{{format.dateFormat(comments1.time,'M月D日 h:m')}}</view>
+            </view>
+          </view>
+        </view>
+      </scroll-view>
+    </view>
+  </view>
+</view>
+<!-- 输入框 -->
+<view class="bottom-modal" style="z-index: 9; display: {{inputshow}};position: fixed; bottom:0rpx; ">
+  <view class="cu-bar foot input cur " style="padding-bottom: {{20+inputHeight}}rpx; padding-top: 20rpx;">
+    <input class="solid-bottom" style="width:200px;" bind:focus="inputFocus" bind:blur="changeInputBlur"confirm-type="send" value="{{inputContent}}" bindinput="InputContent" adjust-position="{{false}}" maxlength="300" cursor-spacing="10" placeholder="评论"></input>
+    <view>
+      <button style="width: 150rpx;" role="button" catchtap="SendCommentsTap" >发送</button>
+    </view>
+  </view>
+</view>

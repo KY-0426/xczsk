@@ -1,0 +1,9 @@
+<!--colorui/components/title-action-bar/title-action-bar.wxml-->
+
+  <view class="cu-bar  ">
+    <view class="padding-left-xl">
+      <text class="text-xl text-bold"  style="line-height: 5rpx;color: #406869;">
+      {{title}}
+      </text>
+    </view>
+  </view>

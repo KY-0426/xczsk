@@ -1,0 +1,5 @@
+/* pages/course/paper/paper.wxss */
+page{
+  background-color: white;
+  padding: 0 0 200rpx 0;
+}

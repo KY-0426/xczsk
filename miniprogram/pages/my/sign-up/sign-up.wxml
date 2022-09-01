@@ -1,0 +1,59 @@
+<!--pages/my/sign-up/sign-up.wxml-->
+<cu-custom bgColor="bg-cyan" isBack="{{true}}">
+  <view slot="backText"><text style="color: rgb(255, 255, 255);" class="cuIcon-back "></text></view>
+</cu-custom>
+<!-- 签到 -->
+<view style="padding: 60rpx 20rpx 20rpx 60rpx; font-size: 30px;">
+  <text class="text-black text-bold">签到</text>
+</view>
+<!-- <view class="flex justify-center flex-wrap main">
+    <view class="margin-xs padding-sm box"  animation="{{animationMain}}" bindtap='rotateFn' data-id="1" >
+        
+    </view>
+    <view class="margin-xs padding-sm box"  animation="{{animationBack}}" bindtap='rotateFn' data-id="2" >
+      sss
+    </view>
+</view> -->
+<view class='main'>
+  <!--正面的框  -->
+  <view class="box b1" animation="{{animationMain}}" bindtap='rotateFn' data-id="1"> 
+    <view class="text-xsl text-white padding-top padding-left">{{date}}</view>
+    <view class=" text-white padding-left" style="font-size: 27rpx;">{{month}} {{day}}</view>
+    <button wx:if="{{dateSignUp}}" class=" bg-white lg" style="width: 80%; top: 650rpx; border-radius: 26rpx; " >立即打卡</button>
+    <view class="text-center" style="position: absolute; bottom: 20rpx;width: 100%;">您打卡{{date_num?date_num:0}}天了，继续努力！</view>
+  </view>
+  <!--背面的框  -->
+  <view class="box b2" animation="{{animationBack}}" bindtap='rotateFn' data-id="2" style=" background:url({{daysImg}});background-size: cover;">
+    <view class="solids text-center margin"  style="width: 150rpx; height: 153rpx; float: right; " >
+      <view class=" text-white solids"  style="font-size: 50px;">{{date}}</view>
+      <view class=" text-white margin-xs" style="font-size: 16px;">{{year}}.{{months}}</view>
+    </view>
+  </view>
+</view>
+<!-- 日历 -->
+<view style="padding: 60rpx 20rpx 20rpx 60rpx; font-size: 30px;">
+  <text class="text-black text-bold">日历</text>
+</view>
+<view class="flex justify-center flex-wrap">
+  <view class="margin-xs padding-sm radius " style="width:85%;height: 600rpx;border-radius: 20rpx; box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.3); background-color: #f8f8f8;">
+    <calendar weeks-type="cn" days-color="{{dayStyle}}" binddayClick="dayClick" binddateChange="dateChange" calendar-style="calendar" header-style="header" board-style="board" />
+  </view>
+</view>
+<!-- 便签 -->
+<view style="padding: 60rpx 20rpx 20rpx 60rpx; font-size: 30px;">
+  <text class="text-black text-bold">便签</text>
+</view>
+<view class="flex justify-center flex-wrap">
+  <view class="margin-xs padding-sm radius " style="width:85%;height: 600rpx;border-radius: 20rpx; box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.3); background-color: #f8f8f8;">
+    <scroll-view scroll-y class=" margin-top padding" style="height: 500rpx;" > 
+      <view class="solids-bottom padding" wx:for="{{text}}" wx:key="id">
+        <view style="position: absolute; left: 0rpx; top: 35rpx;">{{index+1}}</view> <input type="text"  bindinput="bindKeyInput" value="{{item.value}}" placeholder="新建便签" data-id="{{index}}" />
+      </view>
+      <view class="flex padding justify-end">
+        <button bindtap="addtextTap"> <text class="text-cyan">添加+</text></button>
+        <button bindtap="deletetextTap"> <text class="text-cyan">删除-</text></button>
+      </view>
+
+    </scroll-view>
+  </view>
+</view>

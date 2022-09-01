@@ -1,0 +1,10 @@
+/* pages/pubuliu/paper/paper.wxss */
+page{
+  background-color: white;
+}
+.nav{
+  /* fixed（固定定位）：生成绝对定位的元素，相对于浏览器窗口进行定位 */
+  position: fixed;
+  bottom: 0rpx;
+  width: 100%;
+}
